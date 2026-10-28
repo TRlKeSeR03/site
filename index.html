@@ -32,8 +32,20 @@ const TOKEN_KEY="squad_score_admin_password";
 let data={categories:[],members:[]},sha=null,isAdmin=false,dirty=false;
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function setStatus(id,msg,type=""){const el=$(id);el.textContent=msg;el.className="status "+type;}
-async function loadData(){try{const r=await fetch("data/scoreboard.json?_"+Date.now());if(!r.ok)throw Error();data=await r.json();if(!Array.isArray(data.categories))data.categories=[];if(!Array.isArray(data.members))data.members=[];render();setStatus("publicStatus","");}catch(e){setStatus("publicStatus","Veriler yüklenemedi. data/scoreboard.json dosyasını kontrol et.","err");$("members").innerHTML='<p class="empty">Veri dosyası bulunamadı.</p>';}}
-function total(m){return data.categories.reduce((s,c)=>s+(Number(m.scores?.[c.id])||0),0);}
+async function loadData(){
+  try{
+    const r=await fetch("https://squad-admin.ayazinlikocer.workers.dev/api/scoreboard?_="+Date.now());
+    if(!r.ok)throw Error("HTTP "+r.status);
+    data=await r.json();
+    if(!Array.isArray(data.categories))data.categories=[];
+    if(!Array.isArray(data.members))data.members=[];
+    render();
+    setStatus("publicStatus","");
+  }catch(e){
+    setStatus("publicStatus","Veriler yüklenemedi. Worker ayarlarını kontrol et.","err");
+    $("members").innerHTML='<p class="empty">Veriler yüklenemedi.</p>';
+  }
+}function total(m){return data.categories.reduce((s,c)=>s+(Number(m.scores?.[c.id])||0),0);}
 function render(){const q=$("search").value.trim().toLocaleLowerCase("tr");let ms=data.members.filter(m=>m.name.toLocaleLowerCase("tr").includes(q));if($("sort").value==="score")ms.sort((a,b)=>total(b)-total(a));else ms.sort((a,b)=>a.name.localeCompare(b.name,"tr"));const host=$("members");if(!ms.length){host.innerHTML='<p class="empty">Henüz üye yok. Yönetici panelinden üye eklenebilir.</p>';return;}
 host.innerHTML=ms.map(m=>`<article class="member"><div class="member-head"><div class="member-name">${esc(m.name)}</div><div class="right"><span class="member-total">TOPLAM ${total(m)}</span>${isAdmin?`<button class="small" data-remove-member="${esc(m.id)}">Üyeyi sil</button>`:""}</div></div>${data.categories.length?data.categories.map(c=>`<div class="category-row"><div class="category-name">${esc(c.name)}</div><div class="controls">${isAdmin?`<button class="minus" data-score="-1" data-member="${esc(m.id)}" data-cat="${esc(c.id)}" aria-label="${esc(c.name)} puan azalt">−</button>`:""}<span class="value">${Number(m.scores?.[c.id])||0}</span>${isAdmin?`<button class="plus" data-score="1" data-member="${esc(m.id)}" data-cat="${esc(c.id)}" aria-label="${esc(c.name)} puan artır">+</button>`:""}</div></div>`).join(""):'<p class="empty">Henüz kategori yok.</p>'}</article>`).join("");
 host.querySelectorAll("[data-score]").forEach(b=>b.onclick=()=>{const m=data.members.find(x=>x.id===b.dataset.member);if(!m.scores)m.scores={};const k=b.dataset.cat;m.scores[k]=(Number(m.scores[k])||0)+Number(b.dataset.score);dirty=true;setStatus("saveStatus","Kaydedilmemiş değişiklikler var.");render();});
