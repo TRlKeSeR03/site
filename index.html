@@ -28,7 +28,7 @@
 <script>
 const CONFIG={owner:"TRlKeSeR03",repo:"site",branch:"main",path:"data/scoreboard.json"};
 const $=id=>document.getElementById(id);
-const TOKEN_KEY="squad_score_admin_token";
+const TOKEN_KEY="squad_score_admin_password";
 let data={categories:[],members:[]},sha=null,isAdmin=false,dirty=false;
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function setStatus(id,msg,type=""){const el=$(id);el.textContent=msg;el.className="status "+type;}
