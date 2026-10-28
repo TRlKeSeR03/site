@@ -1,5 +1,10 @@
 {
-  "categories": [],
+  "categories": [
+    {
+      "id": "bd6f4d33-fa34-4a0a-91e9-2a9554bfdbed",
+      "name": "Seklik"
+    }
+  ],
   "members": [
     {
       "id": "9df39541-d6da-404a-b9e9-1693002bbae9",
@@ -9,7 +14,9 @@
     {
       "id": "37bf9161-43db-4207-a106-c4982b2daee7",
       "name": "Mete",
-      "scores": {}
+      "scores": {
+        "bd6f4d33-fa34-4a0a-91e9-2a9554bfdbed": 1
+      }
     },
     {
       "id": "7e0b6f75-5ca9-4bfb-9fff-7a90bd4e3536",
