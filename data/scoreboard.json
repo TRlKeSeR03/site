@@ -14,13 +14,16 @@
     {
       "id": "9df39541-d6da-404a-b9e9-1693002bbae9",
       "name": "Hazım",
-      "scores": {}
+      "scores": {
+        "feac51b3-b785-4d3a-8ee6-569927dca8cc": 1
+      }
     },
     {
       "id": "37bf9161-43db-4207-a106-c4982b2daee7",
       "name": "Mete",
       "scores": {
-        "bd6f4d33-fa34-4a0a-91e9-2a9554bfdbed": 1
+        "bd6f4d33-fa34-4a0a-91e9-2a9554bfdbed": 1,
+        "feac51b3-b785-4d3a-8ee6-569927dca8cc": 1
       }
     },
     {
@@ -31,7 +34,9 @@
     {
       "id": "8ce30a00-956f-4a97-a506-bf31bbf52d54",
       "name": "Hakkı",
-      "scores": {}
+      "scores": {
+        "feac51b3-b785-4d3a-8ee6-569927dca8cc": 1
+      }
     },
     {
       "id": "3d4ca25a-b5f5-4c0b-ad04-07ea2f914eae",
@@ -41,17 +46,23 @@
     {
       "id": "a095f07f-ab50-4fa0-b1ca-2d8b5e92017a",
       "name": "SoulMortal",
-      "scores": {}
+      "scores": {
+        "feac51b3-b785-4d3a-8ee6-569927dca8cc": 1
+      }
     },
     {
       "id": "b76f1933-84a6-4cb9-aba6-d5223e7e36b6",
       "name": "Milhanbey",
-      "scores": {}
+      "scores": {
+        "feac51b3-b785-4d3a-8ee6-569927dca8cc": 1
+      }
     },
     {
       "id": "f97cf08e-422e-4923-8895-4fd289c3709b",
       "name": "Furkan",
-      "scores": {}
+      "scores": {
+        "feac51b3-b785-4d3a-8ee6-569927dca8cc": 1
+      }
     }
   ]
 }
