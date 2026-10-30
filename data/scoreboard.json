@@ -3,6 +3,11 @@
     {
       "id": "bd6f4d33-fa34-4a0a-91e9-2a9554bfdbed",
       "name": "Seklik"
+    },
+    {
+      "id": "feac51b3-b785-4d3a-8ee6-569927dca8cc",
+      "name": "Cuma",
+      "type": "positive"
     }
   ],
   "members": [
